@@ -16,7 +16,7 @@ services:
       - db
     image: postfixadmin
     ports:
-      - 8000:80
+      - 9000:80
     restart: always
     environment:
       POSTFIXADMIN_DB_TYPE: mysqli
@@ -24,3 +24,5 @@ services:
       POSTFIXADMIN_DB_USER: ${POSTFIXADMIN_DB_USER}
       POSTFIXADMIN_DB_NAME: ${POSTFIXADMIN_DB_NAME}
       POSTFIXADMIN_DB_PASSWORD: ${POSTFIXADMIN_DB_PASSWORD}
+      POSTFIXADMIN_SMTP_SERVER: ${POSTFIXADMIN_SMTP_SERVER}
+      POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PASSWORD}
