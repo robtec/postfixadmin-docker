@@ -5,6 +5,8 @@ services:
   db:
     image: mysql:5.7
     restart: always
+    volumes:
+      - db-data:/var/lib/mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: 1
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -26,3 +28,7 @@ services:
       POSTFIXADMIN_DB_PASSWORD: ${POSTFIXADMIN_DB_PASSWORD}
       POSTFIXADMIN_SMTP_SERVER: ${POSTFIXADMIN_SMTP_SERVER}
       POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PASSWORD}
+
+volumes:
+  db-data:
+    external: true
