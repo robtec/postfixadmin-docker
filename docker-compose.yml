@@ -18,7 +18,7 @@ services:
       - db
     image: postfixadmin
     ports:
-      - 9000:80
+      - 8000:80
     restart: always
     environment:
       POSTFIXADMIN_DB_TYPE: mysqli
