@@ -29,6 +29,30 @@ services:
       POSTFIXADMIN_SMTP_SERVER: ${POSTFIXADMIN_SMTP_SERVER}
       POSTFIXADMIN_SETUP_PASSWORD: ${POSTFIXADMIN_SETUP_PASSWORD}
 
+  postfix-dovecot:
+    container_name: "postfix-dovecot"
+    image: "humpedli/docker-postfix-dovecot"
+    ports:
+      - "25:25"
+      - "587:587"
+      - "993:993"
+    volumes:
+      - "${PATH_TO_CERT}:/etc/ssl/certs/fullchain.pem:ro"
+      - "${PATH_TO_KEY}:/etc/ssl/private/privkey.pem:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      HOSTNAME: ${HOST_DOMAIN}
+      CUSTOM_NETWORKS: 172.18.0.0/16
+      POSTMASTER: ${POSTMASTER_EMAIL}
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    depends_on:
+      - db
+    restart: "always"
+
 volumes:
   db-data:
     external: true
